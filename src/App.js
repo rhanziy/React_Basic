@@ -6,6 +6,8 @@ import Detail from './components/Detail'
 import Header from "./components/Header";
 import { About, Member, Location } from './components/About'
 
+export let Context1 = React.createContext();
+
 
 
 let ListStyle = styled.div`
@@ -33,15 +35,16 @@ let ModalStyle = styled.div`
 
 function App() {
 
-  let [title, setTitle] = useState(['온도', '습도', '조명', '날씨'])
+  let [title, setTitle] = useState(['1', '2', '3', '4'])
   let [index, setIndex] = useState(0);
   let [count, setCount] = useState([1, 2, 3, 4]);
   let [modal, setModal] = useState(false);
   let [input, setInput] = useState('');
+  let [user] = useState('ddd님');
 
 
   return (
-
+      <Context1.Provider value={ { user }}>
       <Routes>
         <Route path="/detail" element={<Detail/>} />
         <Route path="/about" element={<About/>} >
@@ -51,7 +54,7 @@ function App() {
         <Route path="/" element={
           <div className="App">
             <Header />
-    
+            
             {/* <button onClick={()=>{
               let copy = [...title];
               copy.sort();
@@ -100,7 +103,7 @@ function App() {
           </div>
         } />
       </Routes >
-
+    </Context1.Provider>
   );
 }
 

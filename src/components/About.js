@@ -1,7 +1,8 @@
-import React, { useDebugValue } from "react";
+import React, { useContext } from "react";
 import { useState } from 'react';
 import { useNavigate, Outlet } from "react-router-dom";
 import styled from "styled-components";
+import { Context1 } from '../App';
 
 import Header from "./Header";
 
@@ -27,11 +28,13 @@ let Content = styled.div`
 function About() {
 
     let navigate = useNavigate();
+    let { user } = useContext(Context1);
 
     return (
         <div>  
             <Header/>
             <div>About Page</div>
+            <p>{ user }</p>
             <NavStyle>
                 <li onClick={()=> navigate('/about/member')}>멤버</li>
                 <li onClick={()=> navigate('/about/location')}>위치정보</li>

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import styled, { keyframes, css } from "styled-components";
 import { Nav } from "react-bootstrap";
+import { Context1 } from '../App';
 
 import Header from "./Header";
 
@@ -26,6 +27,8 @@ let FadeBox = styled.div`
 
 
 let ContentBox = styled.div`
+    width:90%;
+    margin:0 auto;
     padding:20px;
     opacity:0;
 
@@ -36,7 +39,8 @@ let ContentBox = styled.div`
 `
 
 let NavStyle = styled(Nav)`
-    margin-top:50px;
+    width:90%;
+    margin: 50px auto 0;
 `
 
 function Detail() {
@@ -44,6 +48,8 @@ function Detail() {
     let [ box, setBox ] = useState(true);  
     let [ tab, setTab ] = useState(0);
     let [ fade, setFade ] = useState('');
+    let { user } = useContext(Context1);
+
 
     useEffect(()=>{
 
@@ -74,6 +80,7 @@ function Detail() {
         <div>  
             <Header />
             <div>Detail Page</div>
+            <p>{ user }</p>
             {
                 box ? <FadeBox>2초 뒤 사라짐</FadeBox> : null
             }
